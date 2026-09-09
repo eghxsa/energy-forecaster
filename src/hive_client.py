@@ -30,7 +30,7 @@ def main():
     # Fetch and display devices
     hive = get_hive_session()
     hive.getDevices("No_ID")
-    print("✅ Devices fetched successfully!\n")
+    print("Devices fetched successfully!\n")
     for device in hive.data.devices.values():
         print(device)
 
