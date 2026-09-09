@@ -1,4 +1,4 @@
-# Energy Consumption Predictor
+# Hive Home Energy Consumption Predictor
 
 An end-to-end data pipeline that collects energy data from a Hive smart thermostat and uses machine learning to predict energy usage.
 
