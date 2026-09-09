@@ -1,0 +1,13 @@
+# Data files (don't upload raw data)
+data/
+
+# Environment variables (contains your Hive credentials)
+.env
+
+# Virtual environment
+venv/
+__pycache__/
+*.pyc
+
+# Jupyter notebooks
+.ipynb_checkpoints/

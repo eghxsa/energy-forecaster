@@ -1,0 +1,9 @@
+pyhive-integration
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+jupyter
+python-dotenv
