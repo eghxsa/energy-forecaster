@@ -10,4 +10,5 @@ __pycache__/
 *.pyc
 
 # Jupyter notebooks
-.ipynb_checkpoints/
+.ipynb_checkpoints/".vscode/" 
+"*.code-workspace" 
