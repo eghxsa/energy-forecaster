@@ -42,10 +42,10 @@ async def register_device():
     await session.getDevices("No_ID")
     print("Session verified - Hive account is accessible")
     
-    # Register current device (laptop, computer) with Hive
+    # Register current device with Hive
     try:
         print("\nRegistering device...")
-        await session.auth.device_registration('my_laptop')
+        await session.auth.device_registration('my_device')
         print("Device registration successful!")
     except Exception as e:
         print(f"Device registration failed: {e}")
