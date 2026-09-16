@@ -6,7 +6,7 @@ An end-to-end data pipeline that collects energy data from a Hive smart thermost
 - Authenticates with the Hive API
 - Logs thermostat data (temperature, heating status, battery level)
 - Saves data to CSV for analysis
-- (WIP) Machine learning models to predict energy usage
+- (WIP) Machine learning models to forecast energy usage
 
 ## Setup
 1. Clone the repository
