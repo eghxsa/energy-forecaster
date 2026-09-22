@@ -11,6 +11,9 @@ from dotenv import load_dotenv
 load_dotenv()
 thermostat_id = os.getenv("THERMOSTAT_ID")
 
+# Ensure data directory exists
+os.makedirs("data", exist_ok=True)
+
 # Set up logging
 logging.basicConfig(
     level=logging.INFO,
@@ -74,8 +77,6 @@ def log_data():
         logger.error(f"Error logging data: {e}")
 
 if __name__ == "__main__":
-    # Ensure data directory exists
-    os.makedirs("data", exist_ok=True)
 
     # Create CSV with headers if it does not exist
     if not os.path.exists("data/thermostat_log.csv"):
