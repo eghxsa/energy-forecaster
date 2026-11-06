@@ -3,11 +3,22 @@ import pandas as pd
 import numpy as np
 
 base_temp = 15.5 # HDD baseline (°C)
-gap_date = "2026-10-25" # anything after this is segment 1
 
 def add_segment(df, ts_col="timestamp"):
     df = df.copy()
-    df["segment"] = (pd.to_datetime(df[ts_col]) > gap_date).astype(int) 
+    df = df.sort_values(ts_col).reset_index(drop=True)
+    ts = pd.to_datetime(df[ts_col])
+    
+    # Calculate the time difference between rows in minutes
+    deltas = ts.diff().dt.total_seconds() / 60
+    
+    # A new segment starts whenever the gap is greater than 60 minutes
+    # (This catches the 4-day gap, the 14-day gap, and any other major outages)
+    is_new_segment = (deltas > 60) | (deltas.isna())
+    
+    # Cumulatively sum the booleans to create segment IDs (0, 1, 2, 3...)
+    df["segment"] = is_new_segment.cumsum()
+    
     return df
 
 def add_time_features(df, ts_col="timestamp"):
