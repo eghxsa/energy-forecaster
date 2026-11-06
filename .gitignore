@@ -1,5 +1,7 @@
-# Data files (don't upload raw data)
-data/
+# Data files (ignore raw data and backups)
+data/thermostat_log.csv
+data/*.log
+backups/
 
 # Environment variables (contains Hive credentials)
 .env
@@ -12,3 +14,4 @@ __pycache__/
 # Jupyter notebooks
 .ipynb_checkpoints/".vscode/" 
 "*.code-workspace" 
+
