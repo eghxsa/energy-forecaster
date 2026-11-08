@@ -69,6 +69,14 @@ def add_heating_and_setpoint(df):
     df["setpoint_active"] = (df["target_temperature"] > 10).astype(int)
     return df
 
+def add_target(df, horizon=12):
+    df = df.copy()
+    # Shift the target back by 12 steps (1 hour)
+    # So row X has features from time T, but target from time T+1hr
+    future_temp = df.groupby("segment")["temperature"].shift(-horizon)
+    df["target_temp_1h"] = future_temp - df["temperature"]
+    return df
+
 def build_features(df, drop_na=True):
     df = df.copy()
     df = add_segment(df)
@@ -77,6 +85,11 @@ def build_features(df, drop_na=True):
     df = add_rolling_features(df)
     df = add_physics_features(df)
     df = add_heating_and_setpoint(df)
+    df = add_target(df, horizon=12)
+
+    # Drop the original 'temperature' column so it doesn't leak into X
+    df = df.drop(columns=["temperature"], errors="ignore")
+
     if drop_na:
         df = df.dropna().reset_index(drop=True)
     return df
@@ -91,4 +104,4 @@ FEATURE_COLS = [
     "temp_diff", "hdd"
 ]
 
-TARGET_COL = "temperature"
+TARGET_COL = "target_temp_1h"

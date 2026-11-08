@@ -11,7 +11,11 @@ venv/
 __pycache__/
 *.pyc
 
+# IDEss and text editors
+.vscode/
+*.code-workspace
+
 # Jupyter notebooks
-.ipynb_checkpoints/".vscode/" 
-"*.code-workspace" 
+.ipynb_checkpoints/ 
+ */.ipynb_checkpoints/
 
